@@ -6,7 +6,7 @@
     <p>Nombre de film : {{ films | length}} </p>
     {% for film in films %}
    
-    {{ film.titre ~ ' (' ~ film.genre.nomGenre ~ ')' ~ ' est sortie le ' ~ film.dateSortie}}
+    {{ film.titre ~ ' ( ' ~ film.genre.nomGenre ~ ')' ~ ' est sortie le ' ~ film.dateSortie}}
 
 
     {% endfor %}
