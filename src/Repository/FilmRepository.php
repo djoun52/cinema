@@ -19,32 +19,16 @@ class FilmRepository extends ServiceEntityRepository
         parent::__construct($registry, Film::class);
     }
 
-    // /**
-    //  * @return Film[] Returns an array of Film objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getAll()
     {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('f.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $entityManager = $this->getEntityManager(); 
+        //requete en DQL
+        $querry = $entityManager->createQuery(
+                'SELECT f
+                    FROM app\Entity\Film f
+                    ORDER BY f.titre DESC'
+                );
+        return $querry->execute();
     }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Film
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

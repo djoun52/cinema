@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Film{% endblock %}
+
+{% block body %}
+    <p>Nombre de film : {{ films | length}} </p>
+    {% for film in films %}
+   
+    {{ film.titre ~ ' (' ~ film.genre.nomGenre ~ ')' ~ ' est sortie le ' ~ film.dateSortie}}
+
+
+    {% endfor %}
+
+
+{% endblock %}
