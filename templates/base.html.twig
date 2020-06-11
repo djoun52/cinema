@@ -3,12 +3,28 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}
+        <header class="container-xl">
+            {% block nav %}{% endblock %}
+        </header>
+           
         
+        <main class="container-xl">
+            {% block body %}{% endblock %}
+        </main>
+
+        {% block javascripts %}
+         <script>
+        $('.datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+        startDate: '-3d'
+         }); </script>
         {% endblock %}
-        {% block javascripts %}{% endblock %}
     </body>
 </html>

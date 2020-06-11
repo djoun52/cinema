@@ -1,0 +1,13 @@
+*, h1{
+    font-family: 'Roboto', sans-serif;
+   
+}
+
+p{
+    margin-bottom: 0rem;
+}
+
+.mini{
+    font-size: 9px;
+    margin-bottom: 1rem;
+}

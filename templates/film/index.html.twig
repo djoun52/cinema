@@ -2,12 +2,38 @@
 
 {% block title %}Film{% endblock %}
 
+
+
+{% block nav %}
+	<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+     <a class="navbar-brand" href="{{ path('home_index') }}">Home</a>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+			<ul class="navbar-nav">
+				<li class="nav-item  ">
+					<a class="nav-link" href="{{ path('film_index') }}">
+						film</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="{{ path('genre_index') }}">
+						liste des genres</a>
+				</li>
+            </ul>
+        </div>	
+	</nav>
+{% endblock %}
+
 {% block body %}
+ <a  class="btn btn-outline-primary" href="{{ path('film_add') }}">Ajouter un film</a>
+
+
+
     <p>Nombre de film : {{ films | length}} </p>
+        <p class='mini'>incroyable du ...</p>
+
     {% for film in films %}
    
-    {{ film.titre ~ ' ( ' ~ film.genre.nomGenre ~ ')' ~ ' est sortie le ' ~ film.dateSortie}}
-
+    {{ film.titre ~ ' ( ' ~ film.genre.nomGenre ~ ')' ~ ' est sortie le ' ~ film.dateSortie| date('d/m/Y') ~ 'dure' ~ film.duree   }}
+    <br>
 
     {% endfor %}
 

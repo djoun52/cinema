@@ -28,7 +28,7 @@ class Film
     private $synopsis;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="float", nullable=true)
      */
     private $duree;
 
@@ -72,9 +72,17 @@ class Film
         return $this;
     }
 
-    public function getDuree(): ?int
-    {
-        return $this->duree;
+    public function getDuree(): ?float
+    {   
+        if($this->duree >=60){
+            $dureeH= number_format($this->duree/60, 0, '', ' '); 
+        }else {
+            $dureeH= 0;
+        }
+  
+        $dureeM= number_format($this->duree%60, 0, '', ' ');
+        $dureeS= $dureeH . 'H et ' . $dureeM . 'min' ; 
+        return $dureeS;
     }
 
     public function setDuree(?int $duree): self

@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Genre{% endblock %}
-
+{% block title %}genre{% endblock %}
 
 {% block nav %}
 	<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
      <a class="navbar-brand" href="{{ path('home_index') }}">Home</a>
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
-				<li class="nav-item active ">
+				<li class="nav-item active  ">
 					<a class="nav-link" href="{{ path('film_index') }}">
 						film</a>
 				</li>
-				<li class="nav-item ">
+				<li class="nav-item active ">
 					<a class="nav-link" href="{{ path('genre_index') }}">
 						liste des genres</a>
 				</li>
@@ -20,17 +19,15 @@
         </div>	
 	</nav>
 {% endblock %}
-
-
 {% block body %}
- <a  class="btn btn-outline-primary" href="{{ path('genre_add') }}">Ajouter un genre</a>
+    
 
-<p>Nombre de genre : {{ genres | length}} </p>
- <p class='mini'>c'est beaucoup</p>
-  {% for genre in genres %}
-   
-    {{ genre.nomGenre }}
-    <br>
 
-    {% endfor %}
+    {% if editMode %}
+        <h1>Modification d'une genre</h1>
+    {% else %}
+        <h1>Ajout d'un genre</h1>
+    {% endif %}
+    
+    {{ form(formGenre) }}
 {% endblock %}

@@ -26,7 +26,7 @@ class GenreRepository extends ServiceEntityRepository
         $querry = $entityManager->createQuery(
                 'SELECT g
                     FROM app\Entity\Genre g
-                    ORDER BY g.nom DESC'
+                    ORDER BY g.nomGenre DESC'
                 );
         return $querry->execute();
     }
