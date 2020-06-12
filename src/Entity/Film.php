@@ -73,19 +73,18 @@ class Film
     }
 
     public function getDuree(): ?float
-    {   
-        if($this->duree >=60){
-            $dureeH= number_format($this->duree/60, 0, '', ' '); 
-        }else {
-            $dureeH= 0;
-        }
-  
-        $dureeM= number_format($this->duree%60, 0, '', ' ');
-        $dureeS= $dureeH . 'H et ' . $dureeM . 'min' ; 
-        return $dureeS;
+    { 
+               
+        return  $this->duree;
     }
 
-    public function setDuree(?int $duree): self
+    public function getDureeFormate(): ?string
+    { 
+        $dureeS = date("h",mktime(0,$this->duree,0,0,0,0)) . "H" . date("i",mktime(0,$this->duree,0,0,0,0)) . "min";
+        
+        return $dureeS;
+    }
+    public function setDuree(?float $duree): self
     {
         $this->duree = $duree;
 

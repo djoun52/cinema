@@ -30,5 +30,16 @@ class FilmRepository extends ServiceEntityRepository
                 );
         return $querry->execute();
     }
-
+     /**
+     * supprimer une Film
+     */
+    public function deleteOneById($id){
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery(
+            "DELETE 
+                FROM App\Entity\Film f
+                WHERE f.id = $id"
+        );
+        return $query->execute();
+    }
 }

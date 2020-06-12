@@ -6,6 +6,7 @@ use DateTime;
 use App\Entity\Film;
 
 use App\Entity\Genre;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -16,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
+
 class FilmType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -25,13 +27,14 @@ class FilmType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('synopsis', TextareaType::class,[
+                'required'   => false,
                 'attr' => ['class' => 'form-control']
             ])
             ->add('duree', IntegerType::class, [
                 'attr' => ['class' => 'form-control']
             ])
             ->add('dateSortie', DateType::class, [
-                'attr' => ['class' => 'datepicker'],
+                'attr' => ['class' => 'js-datepicker'],
                 'years' => range(date('Y'),date('Y')-70),
                 'format' => 'ddMMyyyy',
             ])

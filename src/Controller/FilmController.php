@@ -46,11 +46,11 @@ class FilmController extends AbstractController
        if ($form->isSubmitted() && $form->isValid()) {
             // on récupère les données du formulaire
            $film = $form->getData();
-           // on ajoute le nouveau entreprise
+           // on ajoute le nouveau film
            $entityManager = $this->getDoctrine()->getManager();
            $entityManager->persist($film);
            $entityManager->flush();
-           // on redirige vers la liste des entreprise (entreprise_list étant le nom de la route qui liste tous les salariés dans SalarieController)
+           // on redirige vers la liste des film 
            return $this->redirectToRoute('film_index');
        }
        
@@ -63,5 +63,24 @@ class FilmController extends AbstractController
            'editMode' => $film->getId() !== null
        ]);
    }
+   /**
+    * @Route("/{id}/remove", name="film_remove", methods="GET")
+    */
+    public function remove(Film $film){
+        $id = $film->getId();
+        $film = $this->getDoctrine()
+                ->getRepository(Film::class)
+                ->deleteOneById($id);
+        return $this->redirectToRoute('film_index');
+    }   
+
+    /**
+     * @Route("/{id}", name="film_show", methods="GET")
+     */
+    public function schow(Film $film): Response {
+        return $this->render('film/show.html.twig',[
+            'film'=>$film
+            ]);
+    }
     
 }

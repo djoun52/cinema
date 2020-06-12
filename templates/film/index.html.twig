@@ -30,12 +30,44 @@
     <p>Nombre de film : {{ films | length}} </p>
         <p class='mini'>incroyable du ...</p>
 
-    {% for film in films %}
-   
-    {{ film.titre ~ ' ( ' ~ film.genre.nomGenre ~ ')' ~ ' est sortie le ' ~ film.dateSortie| date('d/m/Y') ~ 'dure' ~ film.duree   }}
-    <br>
 
-    {% endfor %}
 
+
+
+	<table class="table table-striped">
+		<thead class="thead-light">
+			<tr>
+				<th>titre</th>
+				<th>genre</th>
+				<th>date de sortie</th>
+                <th>duree</th>
+				<th>synopsis</th>
+				<th>Modifier</th>
+				<th>SUPPRIMER</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for film in films %}
+				<tr>
+					<td>
+						<a href=" {{ path('film_show', {id: film.id}) }}">{{ film.titre }}
+						</a>
+					</td>
+					<td>{{  film.genre.nomGenre }}</td>
+					<td>{{ film.dateSortie| date('d/m/Y')}}</td>
+					<td>{{ film.DureeFormate}}</td>
+					<td>{{ film.synopsis}}</td>
+
+					<td>
+						<a type="button" class="btn btn-warning" href="{{ path('film_edit', {'id':film.id}) }}">Modifier</a>
+					</td>
+					<td>
+
+						<a type="button" class="btn btn-danger" href="{{ path('film_remove', {id: film.id}) }}">Supprimer</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
 {% endblock %}
